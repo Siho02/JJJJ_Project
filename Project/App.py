@@ -1,6 +1,10 @@
 from flask.json import jsonify
 from flask import Flask, render_template, request,url_for
 
+=======
+from flask import Flask, render_template, request,url_for
+from flask import current_app as current_app
+>>>>>>> Stashed changes
 
 app = Flask(__name__)
 
