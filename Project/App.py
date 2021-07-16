@@ -16,7 +16,7 @@ def search():
 
 @app.route("/info", methods=["get"])
 def chart():
-    return render_template("generic.html") 
+    return render_template("generic.html")
 
 
 if __name__=="__main__":
