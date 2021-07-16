@@ -1,0 +1,15 @@
+@font-face {
+
+    src : url("C:\202105_lab\gitClone\JJJJ_Project\Project\static\webfonts\BMJUA_ttf.ttf");
+
+    font-family: "jua" 
+
+}
+
+
+
+p { 
+
+  font-family: "jua";
+
+}
