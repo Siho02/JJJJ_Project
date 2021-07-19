@@ -177,5 +177,14 @@ df_res21 = df_res[df_res.columns[1:5]]
 #1 ~ 3과정에서 만들어낸 19,20,21년 데이터 프렝미을 합쳐서 최종 df_total을 생성
 df_total = pd.concat([df_res19, df_res20, df_res21])
 
+#df_total의 관객수 및 매출액 열을 백만단위로 변경
+df_total[df_total.columns[2]] = df_total[df_total.columns[2]].str.replace(pat=r'[^\w]', repl=r'', regex=True)
+df_total[df_total.columns[3]] = df_total[df_total.columns[3]].str.replace(pat=r'[^\w]', repl=r'', regex=True)
+df_total = df_total.astype({df_total.columns[2]: 'float'})
+df_total = df_total.astype({df_total.columns[3]: 'float'})
+
+df_total[df_total.columns[2]] = df_total[df_total.columns[2]] / 1000000
+df_total[df_total.columns[3]] = df_total[df_total.columns[3]] / 1000000
+
 #df_total을 csv로 저장
 df_total.to_csv("C:/202105_lab/09.ELKStack/JJJJ_Project/Movie_CSV/monthly_total.csv", index=False)
