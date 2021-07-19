@@ -1,0 +1,85 @@
+<html>
+<head>
+    <div id="regions_div" style="width: 900px; height: 500px;"></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js?sensor=false&callback=initialize"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi?sensor=false"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['geochart']});
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+
+    var data = google.visualization.arrayToDataTable([
+              ['Region Code', 'sub-Continent', 'Popularity'],
+              // ['142', 'Asia', 25.49],
+              // ['150', 'Europe', 66.7],
+              // ['019', 'Americas', 73.94],
+              // ['009', 'Oceania', 25.49],
+              // ['002', 'Africa', 66.7]
+              //['021', 'Northern America',73.94]
+              ['015', 'Northern Africa',66.7],
+              ['011', 'Western Africa',66.7],
+              ['017', 'Middle Africa',66.7],
+              ['014', 'Eastern Africa',65.7],
+               ['018', 'Southern Africa',66.7],
+               ['154', 'Northern Europe',66.7],
+               ['155', 'Western Europe', 66.7],
+               ['151', 'Eastern Europe',66.7],
+               ['039', 'Southern Europe', 66.7],
+               ['029', 'Caribbean',37.54],
+               ['013', 'Central America',37.54],
+               ['005', 'South America',37.54],
+               ['143', 'Central Asia',25.49],
+              ['030', 'Eastern Asia',25.49],
+              ['034', 'Southern Asia',25.49],
+              ['035', 'South-Eastern Asia',25.49],
+              ['145', 'Western Asia',25.49],
+              ['053', 'Australia and New Zealand',25.49],
+              ['054', 'Melanesia',25.49],
+              ['057', 'Micronesia',25.49], 
+              ['061', 'Polynesia',25.49],
+              ['021', 'Northern America',73.94]
+
+
+    ]);
+
+    var options = {resolution: 'subcontinents'};
+
+    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+    chart.draw(data, options);
+    }
+</script>
+</head>
+</html>
+
+
+
+<!-- world
+          002: Africa
+              015: Northern Africa
+              011: Western Africa
+              017: Middle Africa
+              014: Eastern Africa
+              018: Southern Africa
+          150: Europe
+              154: Northern Europe
+              155: Western Europe
+              151: Eastern Europe
+              039: Southern Europe
+          019: Americas
+              021: Northern America
+              029: Caribbean
+              013: Central America
+              005: South America
+          142: Asia
+              143: Central Asia
+              030: Eastern Asia
+              034: Southern Asia
+              035: South-Eastern Asia
+              145: Western Asia
+          009: Oceania
+              053: Australia and New Zealand
+              054: Melanesia
+              057: Micronesia
+              061: Polynesia -->
