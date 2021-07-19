@@ -12,8 +12,156 @@
 		<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
         <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/baemin.css')}}" /> -->
 		<noscript><link rel="stylesheet" href="{{url_for('static', filename='css/noscript.css')}}" /></noscript>
+		<script type="text/javascript">
+
+			function realtimeClock() {
+			  document.rtcForm.rtcInput.value = getTimeStamp();
+			  setTimeout("realtimeClock()", 1000);
+			}
+			
+			
+			function getTimeStamp() { // 24시간제
+			  var d = new Date();
+			
+			  var s =
+				leadingZeros(d.getFullYear(), 4) + '-' +
+				leadingZeros(d.getMonth() + 1, 2) + '-' +
+				leadingZeros(d.getDate(), 2) + ' ' +
+			
+				leadingZeros(d.getHours(), 2) + ':' +
+				leadingZeros(d.getMinutes(), 2) + ':' +
+				leadingZeros(d.getSeconds(), 2);
+			
+			  return s;
+			}
+			
+			
+			function leadingZeros(n, digits) {
+			  var zero = '';
+			  n = n.toString();
+			
+			  if (n.length < digits) {
+				for (i = 0; i < digits - n.length; i++)
+				  zero += '0';
+			  }
+			  return zero + n;
+			}
+			
+			</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+	function drawChart(data) {
+	 // 컨텍스트 얻기
+	 var canvas = document.getElementById('chart');
+	 var context = canvas.getContext('2d');
+	
+	 // 배경 렌더링
+	 var gradient = context.createLinearGradient(0,0,0,300);
+	 gradient.addColorStop(0, '#e0e0e0');
+	 gradient.addColorStop(1, '#ffffff');
+	
+	 context.fillStyle = gradient;
+	 context.fillRect(0,0,chart.width,chart.height);
+	
+	 // 좌표
+	 var gridCols = data.length + 1;
+	 var gridRows = 4;
+	 var cellWidth = chart.width / gridCols;
+	 var cellHeight = chart.height / gridRows;
+	
+	 // 배경의 보조선 렌더링
+	 context.beginPath();
+	
+	 for (var row=0;row<=gridRows;row++) {
+	  var y = row * cellHeight;
+	  context.moveTo(0,y);
+	  context.lineTo(chart.width,y);
+	 }
+	
+	 for (var col=0;col<=gridCols;col++) {
+	  var x = col * cellWidth;
+	  context.moveTo(x,0);
+	  context.lineTo(x,chart.height);
+	 }
+	
+	 context.lineWidth = 1;
+	 context.strokeStyle = '#c0c0c0';
+	 context.stroke();
+	
+	 // 데이터의 최대값을 찾는다
+	 var maxVal = 0;
+	
+	 for (var i=0;i<data.length;i++) {
+	  if (data[i]>maxVal) maxVal = data[i];
+	 }
+	
+	 // 최대값이 그래프를 벗어나지 않도록 값을 가산한다.
+	 maxVal = maxVal * 1.1;
+	
+	 // 데이터 플롯용 좌표
+	 var points = [];
+	
+	 for (var i=0;i<data.length;i++) {
+	  var val = data[i];
+	  var px = cellWidth * (i+1);
+	  var py = chart.height - chart.height * (val/maxVal);
+	  points.push({'x':px, 'y':py});
+	 }
+	
+	 // 선 그래프를 렌더링
+	 context.beginPath();
+	 context.moveTo(points[0].x, points[0].y);
+	
+	 for (var i=1;i<points.length;i++) {
+	  context.lineTo(points[i].x, points[i].y);
+	 }
+	
+	 context.lineWidth = 2;
+	 context.strokeStyle = '#ee0000';
+	 context.stroke();
+	
+	 // 좌표 플롯
+	 for (var i in points) {
+	  var p = points[i];
+	  context.beginPath();
+	  context.arc(p.x, p.y, 6, 0, 2*Math.PI);
+	  context.fillStyle = '#ee0000';
+	  context.fill();
+	 }
+	}
+	
+	var timerId;
+	
+	function startChart() {
+	 timerId = setInterval(function() {
+	  var data = new Array();
+	  
+	  for (var i=0 ; i<12 ; i++) {
+	   data.push(Math.random()*100);
+	  }
+	
+	  drawChart(data);
+	 }, 500);
+	
+	}
+	
+	function stopChart() {
+	 clearInterval(timerId);
+	}
+	
+	//-->
+	</SCRIPT>
+
 	</head>
-	<body class="is-preload">
+	<!-- <body class="is-preload">
+		<body onload="realtimeClock()">
+
+			<form name="rtcForm">
+			<input type="text" name="rtcInput" size="20" readonly="readonly" />
+			</form>
+			
+			
+			</body> -->
 
 		<!-- Channel Plugin Scripts -->
 <script>
@@ -64,8 +212,7 @@
 					<header id="header" class="alt">
 						<span class="logo"><img src="../static/images/logo.svg" alt="" /></span>
 						<h1>JJJJ_Project</h1>
-						<p>얼마나 글자가 잘 들어가는지 테스트중
-							GitHub Link <a href="https://github.com/dlwlsdudo1/JJJJ_Project">@JJJJ_Project</a></p>
+						<p>최근 업데이트 날짜 : 2021-07-19 14:20</a></p>
 					</header>
 
 				<!-- Nav -->
@@ -86,28 +233,28 @@
 								<div class="spotlight">
 									<div class="content">
 										<header class="major">
-											<h2>Ipsum sed adipiscing</h2>
+											<h2>코로나가 가져온 문화산업의 변화</h2>
 										</header>
-										<p>Sed lorem ipsum dolor sit amet nullam consequat feugiat consequat magna
-										adipiscing magna etiam amet veroeros. Lorem ipsum dolor tempus sit cursus.
-										Tempus nisl et nullam lorem ipsum dolor sit amet aliquam.</p>
+										<p></p>
+										ㅇㅇ<br>
+										ㅇㅇ<br>
 										<ul class="actions">
-											<li><a href="/info" class="button">Learn More</a></li>
+											<li><a href="/info" class="button">Charts</a></li>
 										</ul>
 									</div>
-									<span class="image"><img src="../static/images/pic01.jpg" alt="" /></span>
+									<span class="image"><img src="../static/images/Taeik.jpg" alt="" /></span>
 								</div>
 							</section>
 
 						<!-- First Section -->
 							<section id="first" class="main special">
 								<header class="major">
-									<h2>Magna veroeros</h2>
+									<h2>코로나 유행시기에 따른 영화 관객수</h2>
 								</header>
 								<ul class="features">
 									<li>
-										<span class="icon solid major style1 fa-code"></span>
-										<h3>Ipsum consequat</h3>
+										<span class="icon solid major style3 fas fa-syringe"></span>
+										<h3>코로나 대 유행</h3>
 										<p>Sed lorem amet ipsum dolor et amet nullam consequat a feugiat consequat tempus veroeros sed consequat.</p>
 									</li>
 									<li>
@@ -123,7 +270,7 @@
 								</ul>
 								<footer class="major">
 									<ul class="actions special">
-										<li><a href="/info" class="button">Learn More</a></li>
+										<li><a href="/info2" class="button">Charts</a></li>
 									</ul>
 								</footer>
 							</section>
@@ -160,7 +307,7 @@
 								<p class="content">Nam elementum nisl et mi a commodo porttitor. Morbi sit amet nisl eu arcu faucibus hendrerit vel a risus. Nam a orci mi, elementum ac arcu sit amet, fermentum pellentesque et purus. Integer maximus varius lorem, sed convallis diam accumsan sed. Etiam porttitor placerat sapien, sed eleifend a enim pulvinar faucibus semper quis ut arcu. Ut non nisl a mollis est efficitur vestibulum. Integer eget purus nec nulla mattis et accumsan ut magna libero. Morbi auctor iaculis porttitor. Sed ut magna ac risus et hendrerit scelerisque. Praesent eleifend lacus in lectus aliquam porta. Cras eu ornare dui curabitur lacinia.</p>
 								<footer class="major">
 									<ul class="actions special">
-										<li><a href="/info" class="button">Learn More</a></li>
+										<li><a href="/info3" class="button">Learn More</a></li>
 									</ul>
 								</footer>
 							</section>
