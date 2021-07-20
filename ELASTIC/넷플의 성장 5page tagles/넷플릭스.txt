@@ -1,0 +1,14 @@
+
+*****자료 키바나에 올리기 <공통>
+Nexflix_csv 파일에서 fratio.csv, Netflix.csv 파일은 log stash 를 이용해서 올려 주세요 
+Compare.csv는 machine leaning 에서 그냥 파일체로 올려도 상관 없습니다. 
+
+
+5page 넷플릭스 차트 만들기 
+아시아 매출 구독자 테이블 만들기 , 아시아 구독자수 매출액 증가률
+
+1. 아시아 매출 구독자
+Netflix 테이블을 가져온다. 
+
+2. 아시아 매출액 구독자 증가률
+Netflix 테이블을 가져온다. 

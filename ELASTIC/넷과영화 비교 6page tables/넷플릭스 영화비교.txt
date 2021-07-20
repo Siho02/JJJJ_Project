@@ -1,0 +1,14 @@
+
+*****자료 키바나에 올리기 <공통>
+Nexflix_csv 파일에서 fratio.csv, Netflix.csv 파일은 log stash 를 이용해서 올려 주세요 
+Compare.csv는 machine leaning 에서 그냥 파일체로 올려도 상관 없습니다 차트이름은 netmovie로 지정했음 
+
+
+6page 넷플릭스 영화 비교 차트 만들기 
+
+
+1. 비교매출, 비교매출 바차트, 구독 관람객 수 , 글자 차트 컨텐츠 수 비교 
+Compare.csv에서 파일체 넣은 차트사용 차트이름 netmovie로 했음 
+
+2. 글자 차트 비율 넷플 영화 매출, 글자 차트 비율 구독자 관람객
+fratio.csv에서 파일체 넣은 차트사용  차트이름 ratio_nm 로 했음 
