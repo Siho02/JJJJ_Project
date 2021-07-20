@@ -24,6 +24,10 @@ def chart2():
 def chart3():
     return render_template("generic3.html")
 
+@app.route("/covid", methods=["get"])
+def chart_co():
+    return render_template("covid.html")
+
 
 
 if __name__=="__main__":
