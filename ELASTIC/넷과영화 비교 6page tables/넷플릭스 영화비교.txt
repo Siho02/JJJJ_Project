@@ -11,4 +11,4 @@ Compare.csv는 machine leaning 에서 그냥 파일체로 올려도 상관 없�
 Compare.csv에서 파일체 넣은 차트사용 차트이름 netmovie로 했음 
 
 2. 글자 차트 비율 넷플 영화 매출, 글자 차트 비율 구독자 관람객
-fratio.csv에서 파일체 넣은 차트사용  차트이름 ratio_nm 로 했음 
+LogStash 사용하여 fratio.csv 자료 활용하였음 차트이름 ratio_nm 로 했음 
