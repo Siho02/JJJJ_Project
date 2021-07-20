@@ -1,3 +1,6 @@
 net_movie_covid.conf   해당 .conf파일사용 
 
-covid_movie_week.csv    해당 .csv파일사용
+net_movie_covid.csv    해당 .csv파일사용
+
+
+
