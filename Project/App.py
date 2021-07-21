@@ -28,6 +28,9 @@ def chart3():
 def chart_co():
     return render_template("covid.html")
 
+@app.route("/info4", methods=["get"])
+def chart4():
+    return render_template("generic4.html")
 
 
 if __name__=="__main__":
