@@ -12,6 +12,55 @@
 		<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
 		<noscript><link rel="stylesheet" href="{{url_for('static', filename='css/noscript.css')}}"  /></noscript>
 		<!-- Channel Plugin Scripts -->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js?sensor=false&callback=initialize"></script>
+		<script type="text/javascript" src="https://www.google.com/jsapi?sensor=false"></script>
+		<script type="text/javascript">
+		google.charts.load('current', {'packages':['geochart']});
+		google.charts.setOnLoadCallback(drawRegionsMap);
+	
+		function drawRegionsMap() {
+	
+		var data = google.visualization.arrayToDataTable([
+				  ['Region Code', 'sub-Continent', 'Popularity'],
+				  // ['142', 'Asia', 25.49],
+				  // ['150', 'Europe', 66.7],
+				  // ['019', 'Americas', 73.94],
+				  // ['009', 'Oceania', 25.49],
+				  // ['002', 'Africa', 66.7]
+				  //['021', 'Northern America',73.94]
+				  ['015', 'Northern Africa',66.7],
+				  ['011', 'Western Africa',66.7],
+				  ['017', 'Middle Africa',66.7],
+				  ['014', 'Eastern Africa',65.7],
+				   ['018', 'Southern Africa',66.7],
+				   ['154', 'Northern Europe',66.7],
+				   ['155', 'Western Europe', 66.7],
+				   ['151', 'Eastern Europe',66.7],
+				   ['039', 'Southern Europe', 66.7],
+				   ['029', 'Caribbean',37.54],
+				   ['013', 'Central America',37.54],
+				   ['005', 'South America',37.54],
+				   ['143', 'Central Asia',25.49],
+				  ['030', 'Eastern Asia',25.49],
+				  ['034', 'Southern Asia',25.49],
+				  ['035', 'South-Eastern Asia',25.49],
+				  ['145', 'Western Asia',25.49],
+				  ['053', 'Australia and New Zealand',25.49],
+				  ['054', 'Melanesia',25.49],
+				  ['057', 'Micronesia',25.49], 
+				  ['061', 'Polynesia',25.49],
+				  ['021', 'Northern America',73.94]
+	
+	
+		]);
+	
+		var options = {resolution: 'subcontinents'};
+	
+		var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+	
+		chart.draw(data, options);
+		}
+	</script>
 <script>
 	(function() {
 	  var w = window;
@@ -63,35 +112,55 @@
 
 				<!-- Header -->
 					<header id="header">
-						<h1>K-movie</h1>
-						<p>이 자료들은 매 달 15일마다 업데이트 합니다.</p>
+						<h1>COVID-19</h1>
+						<p>최종 업데이트 21-07-21 10:45</p>
 						
 					</header>
 					<nav id="nav">
 						<ul>
-							<li><a href="#content" class="main">코로나가 가져온 문화산업의 변화</a></li>
-							<li><a href="#first" class="first">자료 정리</a></li>
+							<li><a href="#content" class="main">코로나 Live</a></li>
+							<!-- <li><a href="#first" class="first">자료 정리</a></li> -->
 						</ul>
 					</nav>
 				<!-- Main -->
+				<!-- <section id="content" class="main"> -->
 					<div id="main">
-						
+						<ul class="statistics">
+							<li class="style1">
+								<span class="icon solid fas fa-atom"></span>
+								<strong>180,481</strong> 확진자
+							</li>
+							<li class="style2">
+								<span class="icon solid fas fa-skull-crossbones"></span>
+								<strong>2,059</strong> 사망자
+							</li>
+							<li class="style3">
+								<span class="icon solid far fa-grin-beam"></span>
+								<strong>160,347</strong> 완치자
+							</li>
+							<li class="style4">
+								<span class="icon solid fas fa-syringe"></span>
+								<strong>11,251,987</strong> 검사자
+							</li>
+							<li class="style5">
+								<span class="icon solid fas fa-home"></span>
+								<strong>4단계</strong> 수도권 거리두기 현황
+							</li>
+						</ul>
+					<!-- </section> -->
 						<!-- Content -->
-							<section id="content" class="main">
+							<section id="first" class="first">
 								<!-- <span class="image main"><img src="../static/images/cat.png"alt="" /></span> -->
 								<!-- <a href='https://kr.freepik.com/vectors/people'>People 벡터는 freepik - kr.freepik.com가 제작함</a> -->
-								<h2>영화관 관객수, 매출액 월별 정리</h2>
-								<iframe src="http://localhost:5601/goto/31cfcca6ce3888e3967bf452194402ac" height="600" width="800"></iframe></section>
-							<section id="first" class="first">
-								<h2>관객수, 매출액 급격히 떨어지거나 올랐을 때 일어난 상황 정리</h2>
-								<p>위 차트를 보면 코로나 시작 후 20.01~02, 08~09, 11~12 사이에 관객수가 급격히 떨어진 것을 알 수 있다<br>
-									
-								그 당시 일어난 이슈들을 정리 해 봤다</p>
-								<span class="image main"><img src="../static/images/codown1.png" alt="" /></span>
+								<h2>코로나 Live</h2>
+								<h2><div id="regions_div" style="width: 900px; height: 500px;"></div></h2>
+								<p></p>
+								<!-- <span class="image main"><img src="../static/images/codown1.png" alt="" /></span>
 								<p><span class="image main"><img src="../static/images/codown2.png"alt="" /></span></p>
-								<span class="image main"><img src="../static/images/codown3.png"alt="" /></span>
+								<span class="image main"><img src="../static/images/codown3.png"alt="" /></span> -->
 								<ul class="actions">
 									<li><a href="/" class="button">Main</a></li>
+									
 								</ul>
 							</section>
 							

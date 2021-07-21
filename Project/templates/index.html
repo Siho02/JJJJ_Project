@@ -5,196 +5,199 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Welcome</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
-        <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/baemin.css')}}" /> -->
-		<noscript><link rel="stylesheet" href="{{url_for('static', filename='css/noscript.css')}}" /></noscript>
-		<script type="text/javascript">
-		
 
-			function realtimeClock() {
-			  document.rtcForm.rtcInput.value = getTimeStamp();
-			  setTimeout("realtimeClock()", 1000);
-			}
-			
-			
-			function getTimeStamp() { // 24시간제
-			  var d = new Date();
-			
-			  var s =
+<head>
+	<title>Welcome</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}" />
+	<!-- <link rel="stylesheet" href="{{url_for('static', filename='css/baemin.css')}}" /> -->
+	<noscript>
+		<link rel="stylesheet" href="{{url_for('static', filename='css/noscript.css')}}" />
+	</noscript>
+	<script type="text/javascript">
+
+
+		function realtimeClock() {
+			document.rtcForm.rtcInput.value = getTimeStamp();
+			setTimeout("realtimeClock()", 1000);
+		}
+
+
+		function getTimeStamp() { // 24시간제
+			var d = new Date();
+
+			var s =
 				leadingZeros(d.getFullYear(), 4) + '-' +
 				leadingZeros(d.getMonth() + 1, 2) + '-' +
 				leadingZeros(d.getDate(), 2) + ' ' +
-			
+
 				leadingZeros(d.getHours(), 2) + ':' +
 				leadingZeros(d.getMinutes(), 2) + ':' +
 				leadingZeros(d.getSeconds(), 2);
-			
-			  return s;
-			}
-			
-			
-			function leadingZeros(n, digits) {
-			  var zero = '';
-			  n = n.toString();
-			
-			  if (n.length < digits) {
-				for (i = 0; i < digits - n.length; i++)
-				  zero += '0';
-			  }
-			  return zero + n;
-			}
-			
-			</script>
 
-<SCRIPT LANGUAGE="JavaScript">
-	function drawChart(data) {
-	 // 컨텍스트 얻기
-	 var canvas = document.getElementById('chart');
-	 var context = canvas.getContext('2d');
-	
-	 // 배경 렌더링
-	 var gradient = context.createLinearGradient(0,0,0,300);
-	 gradient.addColorStop(0, '#e0e0e0');
-	 gradient.addColorStop(1, '#ffffff');
-	
-	 context.fillStyle = gradient;
-	 context.fillRect(0,0,chart.width,chart.height);
-	
-	 // 좌표
-	 var gridCols = data.length + 1;
-	 var gridRows = 4;
-	 var cellWidth = chart.width / gridCols;
-	 var cellHeight = chart.height / gridRows;
-	
-	 // 배경의 보조선 렌더링
-	 context.beginPath();
-	
-	 for (var row=0;row<=gridRows;row++) {
-	  var y = row * cellHeight;
-	  context.moveTo(0,y);
-	  context.lineTo(chart.width,y);
-	 }
-	
-	 for (var col=0;col<=gridCols;col++) {
-	  var x = col * cellWidth;
-	  context.moveTo(x,0);
-	  context.lineTo(x,chart.height);
-	 }
-	
-	 context.lineWidth = 1;
-	 context.strokeStyle = '#c0c0c0';
-	 context.stroke();
-	
-	 // 데이터의 최대값을 찾는다
-	 var maxVal = 0;
-	
-	 for (var i=0;i<data.length;i++) {
-	  if (data[i]>maxVal) maxVal = data[i];
-	 }
-	
-	 // 최대값이 그래프를 벗어나지 않도록 값을 가산한다.
-	 maxVal = maxVal * 1.1;
-	
-	 // 데이터 플롯용 좌표
-	 var points = [];
-	
-	 for (var i=0;i<data.length;i++) {
-	  var val = data[i];
-	  var px = cellWidth * (i+1);
-	  var py = chart.height - chart.height * (val/maxVal);
-	  points.push({'x':px, 'y':py});
-	 }
-	
-	 // 선 그래프를 렌더링
-	 context.beginPath();
-	 context.moveTo(points[0].x, points[0].y);
-	
-	 for (var i=1;i<points.length;i++) {
-	  context.lineTo(points[i].x, points[i].y);
-	 }
-	
-	 context.lineWidth = 2;
-	 context.strokeStyle = '#ee0000';
-	 context.stroke();
-	
-	 // 좌표 플롯
-	 for (var i in points) {
-	  var p = points[i];
-	  context.beginPath();
-	  context.arc(p.x, p.y, 6, 0, 2*Math.PI);
-	  context.fillStyle = '#ee0000';
-	  context.fill();
-	 }
-	}
-	
-	var timerId;
-	
-	function startChart() {
-	 timerId = setInterval(function() {
-	  var data = new Array();
-	  
-	  for (var i=0 ; i<12 ; i++) {
-	   data.push(Math.random()*100);
-	  }
-	
-	  drawChart(data);
-	 }, 500);
-	
-	}
-	
-	function stopChart() {
-	 clearInterval(timerId);
-	}
-	
+			return s;
+		}
+
+
+		function leadingZeros(n, digits) {
+			var zero = '';
+			n = n.toString();
+
+			if (n.length < digits) {
+				for (i = 0; i < digits - n.length; i++)
+					zero += '0';
+			}
+			return zero + n;
+		}
+
+	</script>
+
+	<SCRIPT LANGUAGE="JavaScript">
+		function drawChart(data) {
+			// 컨텍스트 얻기
+			var canvas = document.getElementById('chart');
+			var context = canvas.getContext('2d');
+
+			// 배경 렌더링
+			var gradient = context.createLinearGradient(0, 0, 0, 300);
+			gradient.addColorStop(0, '#e0e0e0');
+			gradient.addColorStop(1, '#ffffff');
+
+			context.fillStyle = gradient;
+			context.fillRect(0, 0, chart.width, chart.height);
+
+			// 좌표
+			var gridCols = data.length + 1;
+			var gridRows = 4;
+			var cellWidth = chart.width / gridCols;
+			var cellHeight = chart.height / gridRows;
+
+			// 배경의 보조선 렌더링
+			context.beginPath();
+
+			for (var row = 0; row <= gridRows; row++) {
+				var y = row * cellHeight;
+				context.moveTo(0, y);
+				context.lineTo(chart.width, y);
+			}
+
+			for (var col = 0; col <= gridCols; col++) {
+				var x = col * cellWidth;
+				context.moveTo(x, 0);
+				context.lineTo(x, chart.height);
+			}
+
+			context.lineWidth = 1;
+			context.strokeStyle = '#c0c0c0';
+			context.stroke();
+
+			// 데이터의 최대값을 찾는다
+			var maxVal = 0;
+
+			for (var i = 0; i < data.length; i++) {
+				if (data[i] > maxVal) maxVal = data[i];
+			}
+
+			// 최대값이 그래프를 벗어나지 않도록 값을 가산한다.
+			maxVal = maxVal * 1.1;
+
+			// 데이터 플롯용 좌표
+			var points = [];
+
+			for (var i = 0; i < data.length; i++) {
+				var val = data[i];
+				var px = cellWidth * (i + 1);
+				var py = chart.height - chart.height * (val / maxVal);
+				points.push({ 'x': px, 'y': py });
+			}
+
+			// 선 그래프를 렌더링
+			context.beginPath();
+			context.moveTo(points[0].x, points[0].y);
+
+			for (var i = 1; i < points.length; i++) {
+				context.lineTo(points[i].x, points[i].y);
+			}
+
+			context.lineWidth = 2;
+			context.strokeStyle = '#ee0000';
+			context.stroke();
+
+			// 좌표 플롯
+			for (var i in points) {
+				var p = points[i];
+				context.beginPath();
+				context.arc(p.x, p.y, 6, 0, 2 * Math.PI);
+				context.fillStyle = '#ee0000';
+				context.fill();
+			}
+		}
+
+		var timerId;
+
+		function startChart() {
+			timerId = setInterval(function () {
+				var data = new Array();
+
+				for (var i = 0; i < 12; i++) {
+					data.push(Math.random() * 100);
+				}
+
+				drawChart(data);
+			}, 500);
+
+		}
+
+		function stopChart() {
+			clearInterval(timerId);
+		}
+
 	//-->
 	</SCRIPT>
-<script>
-	(function() {
-	  var w = window;
-	  if (w.ChannelIO) {
-		return (window.console.error || window.console.log || function(){})('ChannelIO script included twice.');
-	  }
-	  var ch = function() {
-		ch.c(arguments);
-	  };
-	  ch.q = [];
-	  ch.c = function(args) {
-		ch.q.push(args);
-	  };
-	  w.ChannelIO = ch;
-	  function l() {
-		if (w.ChannelIOInitialized) {
-		  return;
-		}
-		w.ChannelIOInitialized = true;
-		var s = document.createElement('script');
-		s.type = 'text/javascript';
-		s.async = true;
-		s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
-		s.charset = 'UTF-8';
-		var x = document.getElementsByTagName('script')[0];
-		x.parentNode.insertBefore(s, x);
-	  }
-	  if (document.readyState === 'complete') {
-		l();
-	  } else if (window.attachEvent) {
-		window.attachEvent('onload', l);
-	  } else {
-		window.addEventListener('DOMContentLoaded', l, false);
-		window.addEventListener('load', l, false);
-	  }
-	})();
-	ChannelIO('boot', {
-	  "pluginKey": "a4b6aa69-fb1b-41c3-86d1-09f33e6f003a"
-	});
-  </script>
-  <!-- End Channel Plugin -->
-	</head>
-	<!-- <body class="is-preload">
+	<script>
+		(function () {
+			var w = window;
+			if (w.ChannelIO) {
+				return (window.console.error || window.console.log || function () { })('ChannelIO script included twice.');
+			}
+			var ch = function () {
+				ch.c(arguments);
+			};
+			ch.q = [];
+			ch.c = function (args) {
+				ch.q.push(args);
+			};
+			w.ChannelIO = ch;
+			function l() {
+				if (w.ChannelIOInitialized) {
+					return;
+				}
+				w.ChannelIOInitialized = true;
+				var s = document.createElement('script');
+				s.type = 'text/javascript';
+				s.async = true;
+				s.src = 'https://cdn.channel.io/plugin/ch-plugin-web.js';
+				s.charset = 'UTF-8';
+				var x = document.getElementsByTagName('script')[0];
+				x.parentNode.insertBefore(s, x);
+			}
+			if (document.readyState === 'complete') {
+				l();
+			} else if (window.attachEvent) {
+				window.attachEvent('onload', l);
+			} else {
+				window.addEventListener('DOMContentLoaded', l, false);
+				window.addEventListener('load', l, false);
+			}
+		})();
+		ChannelIO('boot', {
+			"pluginKey": "a4b6aa69-fb1b-41c3-86d1-09f33e6f003a"
+		});
+	</script>
+	<!-- End Channel Plugin -->
+</head>
+<!-- <body class="is-preload">
 		<body onload="realtimeClock()">
 
 			<form name="rtcForm">
@@ -204,184 +207,177 @@
 			
 			</body> -->
 
-		<!-- Channel Plugin Scripts -->
+<!-- Channel Plugin Scripts -->
 
-		<!-- Wrapper -->
-			<div id="wrapper">
-				<body class="is-preload">
+<!-- Wrapper -->
+<div id="wrapper">
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<span class="logo"><img src="../static/images/logo.svg" alt="" /></span>
-						<h1>JJJJ_Project</h1>
-						<p>최근 업데이트 날짜 : 2021-07-19 14:20</a></p>
-					</header>
+	<body class="is-preload">
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul>
-							<li><a href="#intro" class="active">코로나 현황</a></li>
-							<li><a href="#first">코로나 미디어산업</a></li>
-							<li><a href="#second">코코코코</a></li>
-							<li><a href="#ctaa">코로나와 넷플릭스</a></li>
-							<li><a href="#cta">넷플릭스 - 한국영화</a></li>
+		<!-- Header -->
+		<header id="header" class="alt">
+			<span class="logo"><img src="../static/images/logo.svg" alt="" /></span>
+			<h1>JJJJ_Project</h1>
+			<p>최근 업데이트 날짜 : 2021-07-19 14:20</a></p>
+		</header>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="#intro" class="active">코로나 현황</a></li>
+				<li><a href="#first">코로나 미디어산업</a></li>
+				<li><a href="#second">코코코코</a></li>
+				<li><a href="#ctaa">코로나와 넷플릭스</a></li>
+				<li><a href="#cta">넷플릭스 - 한국영화</a></li>
+			</ul>
+		</nav>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Introduction -->
+			<!-- First Section -->
+			<section id="intro" class="main specials">
+				<header class="major">
+					<h2>코로나 or 팀 주제</h2>
+				</header>
+				<ul class="features">
+					<li>
+						<span class="icon solid major style3 fas fa-syringe"></span>
+						<h3>코로나 의 개요</h3>
+						<p>2019년 11월, 중국 후베이성 우한에서 처음으로 발생되어 보고된 새로운 유형의 변종 코로나바이러스인 SARS-CoV-2에 의해 발병하는 급성 호흡기 전염병이다
+						</p>
+					</li>
+					<li>
+						<span class="icon solid major style2 far fa-sad-tear"></span>
+						<h3>Covid19=?</h3>
+						<p>코로나로 인해 자영업자들의 손해는 매우크다. 코로나와 미디어산업의 매출액을 비교해서 보여주고싶다.</p>
+					</li>
+					<li>
+						<span class="icon major style3 fa-copy"></span>
+						<h3>Covid-19 Live</h3>
+						<p>Korea Covid-19 Live Click the Data button<br>
+							Update time : 2021-07-21 10:35</p>
+
+					</li>
+				</ul>
+				<footer class="major">
+					<ul class="actions special">
+						<li><a href="/covid" class="button">Data</a></li>
+					</ul>
+				</footer>
+			</section>
+			<section id="first" class="main">
+				<div class="spotlight">
+					<div class="content">
+						<header class="major">
+							<h2>코로나와 상반되는 미디어산업</h2>
+						</header>
+						<p></p>
+						2020년 한국 영화산업 결산' 보고서에 따르면 지난해<br>
+						국내 극장 관객 수는 총 5952만 명으로, 전년 대비 73.7% 감소했다<br>
+						2019년 부터 21년 6월 까지의 매출, 관객수 통계를 낸 후 <br>
+						코로나 단계격상, 대유행과 미디어산업이 상반되는지 체크해 봤다.
+						<ul class="actions">
+							<li><a href="/info" class="button">Charts</a></li>
 						</ul>
-					</nav>
-
-				<!-- Main -->
-					<div id="main">
-
-						<!-- Introduction -->
-						<!-- First Section -->
-							<section id="intro" class="main specials">
-								<header class="major">
-									<h2>코로나 or 팀 주제</h2>
-								</header>
-								<ul class="features">
-									<li>
-										<span class="icon solid major style3 fas fa-syringe"></span>
-										<h3>코로나 의 개요</h3>
-										<p>2019년 11월, 중국 후베이성 우한에서 처음으로 발생되어 보고된 새로운 유형의 변종 코로나바이러스인 SARS-CoV-2에 의해 발병하는 급성 호흡기 전염병이다</p>
-									</li>
-									<li>
-										<span class="icon solid major style2 far fa-sad-tear"></span>
-										<h3>Covid19=?</h3>
-										<p>코로나로 인해 자영업자들의 손해는 매우크다. 코로나와 미디어산업의 매출액을 비교해서 보여주고싶다.</p>
-									</li>
-									<li>
-										<span class="icon major style3 fa-copy"></span>
-										<h3>Covid-19 Live</h3>
-										<p>Korea Covid-19 Live Click the Data button<br>
-										Update time : 2021-07-20 14:00</p>
-
-									</li>
-								</ul>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="/covid" class="button">Data</a></li>
-									</ul>
-								</footer>
-							</section>
-							<section id="first" class="main">
-								<div class="spotlight">
-									<div class="content">
-										<header class="major">
-											<h2>코로나가 가져온 문화산업의 변화</h2>
-										</header>
-										<p></p>
-										ㅇㅇ<br>
-										ㅇㅇ<br>
-										<ul class="actions">
-											<li><a href="/info" class="button">Charts</a></li>
-										</ul>
-									</div>
-									<span class="image"><img src="../static/images/Taeik.jpg" alt="" /></span>
-								</div>
-							</section>
-							<section id="second" class="main">
-								<div class="spotlight">
-									<div class="content">
-										<header class="major">
-											<h2>코로나가 가져온 문화산업의 변화</h2>
-										</header>
-										<p></p>
-										ㅇㅇ<br>
-										ㅇㅇ<br>
-										<ul class="actions">
-											<li><a href="/info" class="button">Charts</a></li>
-										</ul>
-									</div>
-									<span class="image"><img src="../static/images/Taeik.jpg" alt="" /></span>
-								</div>
-							</section>
-
-						<!-- Second Section -->
-							<section id="ctaa" class="main special">
-								<header class="major">
-									<h2>코로나와 넷플릭스</h2>
-									<p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
-									posuere. Nulla massa urna, fermentum eget quam aliquet.<br><br>
-								Data Update 2021-07-20 15:00</p>
-								</header>
-								<ul class="statistics">
-									<li class="style1">
-										<span class="icon solid fas fa-atom"></span>
-										<strong>180,481</strong> 확진자
-									</li>
-									<li class="style2">
-										<span class="icon solid fas fa-skull-crossbones"></span>
-										<strong>2,059</strong> 사망자
-									</li>
-									<li class="style3">
-										<span class="icon solid far fa-grin-beam"></span>
-										<strong>160,347</strong> 완치자
-									</li>
-									<li class="style4">
-										<span class="icon solid fas fa-syringe"></span>
-										<strong>11,251,987</strong> 검사자
-									</li>
-									<li class="style5">
-										<span class="icon solid fas fa-theater-masks"></span>
-										<strong>4단계</strong> 수도권 거리두기 현황
-									</li>
-								</ul>
-								<p class="content">Nam elementum nisl et mi a commodo porttitor. Morbi sit amet nisl eu arcu faucibus hendrerit vel a risus. Nam a orci mi, elementum ac arcu sit amet, fermentum pellentesque et purus. Integer maximus varius lorem, sed convallis diam accumsan sed. Etiam porttitor placerat sapien, sed eleifend a enim pulvinar faucibus semper quis ut arcu. Ut non nisl a mollis est efficitur vestibulum. Integer eget purus nec nulla mattis et accumsan ut magna libero. Morbi auctor iaculis porttitor. Sed ut magna ac risus et hendrerit scelerisque. Praesent eleifend lacus in lectus aliquam porta. Cras eu ornare dui curabitur lacinia.</p>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="/info3" class="button">Learn More</a></li>
-									</ul>
-								</footer>
-							</section>
-
-						<!-- Get Started -->
-							<section id="cta" class="main special">
-								<header class="major">
-									<h2>Congue imperdiet</h2>
-									<p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
-									posuere. Nulla massa urna, fermentum eget quam aliquet.</p>
-								</header>
-								<footer class="major">
-									<ul class="actions special">
-										<li><a href="/info" class="button primary">Get Started</a></li>
-										<li><a href="/info" class="button">Learn More</a></li>
-									</ul>
-								</footer>
-							</section>
-
 					</div>
+					<span class="image"><img src="../static/images/Taeik.jpg" alt="" /></span>
+				</div>
+			</section>
+			<section id="second" class="main">
+				<div class="spotlight">
+					<div class="content">
+						<header class="major">
+							<h2>확진자와 관람객의 연관성</h2>
+						</header>
+						<p></p>
+						
+						<ul class="actions">
+							<li><a href="/info2" class="button">Charts</a></li>
+						</ul>
+					</div>
+					<span class="image"><img src="../static/images/cat.png" alt="" /></span>
+				</div>
+			</section>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<section>
+			<!-- Second Section -->
+			<section id="ctaa" class="main special">
+				<header class="major">
+					<h2>코로나와 넷플릭스</h2>
+					<p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
+						posuere. Nulla massa urna, fermentum eget quam aliquet.<br><br>
+						Data Update 2021-07-20 15:00</p>
+				</header>
+				<p class="content">Nam elementum nisl et mi a commodo porttitor. Morbi sit amet nisl eu arcu faucibus
+					hendrerit vel a risus. Nam a orci mi, elementum ac arcu sit amet, fermentum pellentesque et purus.
+					Integer maximus varius lorem, sed convallis diam accumsan sed. Etiam porttitor placerat sapien, sed
+					eleifend a enim pulvinar faucibus semper quis ut arcu. Ut non nisl a mollis est efficitur
+					vestibulum. Integer eget purus nec nulla mattis et accumsan ut magna libero. Morbi auctor iaculis
+					porttitor. Sed ut magna ac risus et hendrerit scelerisque. Praesent eleifend lacus in lectus aliquam
+					porta. Cras eu ornare dui curabitur lacinia.</p>
+				<footer class="major">
+					<ul class="actions special">
+						<li><a href="/info3" class="button">Learn More</a></li>
+					</ul>
+				</footer>
+			</section>
 
-							</ul>
-						</section>
-						<section>
-							<h2>Etiam feugiat</h2>
+			<!-- Get Started -->
+			<section id="cta" class="main special">
+				<header class="major">
+					<h2>Congue imperdiet</h2>
+					<p>Donec imperdiet consequat consequat. Suspendisse feugiat congue<br />
+						posuere. Nulla massa urna, fermentum eget quam aliquet.</p>
+				</header>
+				<footer class="major">
+					<ul class="actions special">
+						<li><a href="/info" class="button primary">Get Started</a></li>
+						<li><a href="/info" class="button">Learn More</a></li>
+					</ul>
+				</footer>
+			</section>
 
-							</dl>
-							<ul class="icons">
-                                <li><a href="https://github.com/dlwlsdudo1/JJJJ_Project" class="icon brands fa-github alt"><span class="label">repository</span></a></li>
-								<li><a href="https://github.com/dlwlsdudo1" class="icon brands fa-github alt"><span class="label">JinYoung</span></a></li>
-								<li><a href="https://github.com/leejineui" class="icon brands fa-github alt"><span class="label">JinEui</span></a></li>
-								<li><a href="https://github.com/Siho02" class="icon brands fa-github alt"><span class="label">TaeIk</span></a></li>
-								<li><a href="https://github.com/rnaqpddl123" class="icon brands fa-github alt"><span class="label">JooYoung</span></a></li>
-							</ul>
-						</section>
-						<p class="copyright">&copy; We affiliation: <a href="https://playdata.io/">PlayData</a>.</p>
-					</footer>
+		</div>
 
-			</div>
+		<!-- Footer -->
+		<footer id="footer">
+			<section>
 
-		<!-- Scripts -->
-			<script src="../static/js/jquery.min.js"></script>
-			<script src="../static/js/jquery.scrollex.min.js"></script>
-			<script src="../static/js/jquery.scrolly.min.js"></script>
-			<script src="../static/js/browser.min.js"></script>
-			<script src="../static/js/breakpoints.min.js"></script>
-			<script src="../static/js/util.js"></script>
-			<script src="../static/js/main.js"></script>
-			<!-- <script src="../static/js/openAPI.js"></script> -->
+				</ul>
+			</section>
+			<section>
+				<h2>Etiam feugiat</h2>
 
-	</body>
+				</dl>
+				<ul class="icons">
+					<li><a href="https://github.com/dlwlsdudo1/JJJJ_Project" class="icon brands fa-github alt"><span
+								class="label">repository</span></a></li>
+					<li><a href="https://github.com/dlwlsdudo1" class="icon brands fa-github alt"><span
+								class="label">JinYoung</span></a></li>
+					<li><a href="https://github.com/leejineui" class="icon brands fa-github alt"><span
+								class="label">JinEui</span></a></li>
+					<li><a href="https://github.com/Siho02" class="icon brands fa-github alt"><span
+								class="label">TaeIk</span></a></li>
+					<li><a href="https://github.com/rnaqpddl123" class="icon brands fa-github alt"><span
+								class="label">JooYoung</span></a></li>
+				</ul>
+			</section>
+			<p class="copyright">&copy; We affiliation: <a href="https://playdata.io/">PlayData</a>.</p>
+		</footer>
+
+</div>
+
+<!-- Scripts -->
+<script src="../static/js/jquery.min.js"></script>
+<script src="../static/js/jquery.scrollex.min.js"></script>
+<script src="../static/js/jquery.scrolly.min.js"></script>
+<script src="../static/js/browser.min.js"></script>
+<script src="../static/js/breakpoints.min.js"></script>
+<script src="../static/js/util.js"></script>
+<script src="../static/js/main.js"></script>
+<!-- <script src="../static/js/openAPI.js"></script> -->
+
+</body>
+
 </html>
